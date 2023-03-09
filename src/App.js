@@ -7,7 +7,7 @@ function App() {
     <div className="app-container">
       <Header />
       <Sidebar />
-      {/* <Body /> */}
+      <Body />
     </div>
   );
 }

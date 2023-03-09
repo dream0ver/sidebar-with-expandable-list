@@ -12,7 +12,18 @@
   user-select: none;
   font-family: "Poppins", sans-serif;
 }
+body {
+  overflow: hidden;
+}
 
+.body-container {
+  overflow: auto;
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  margin-top: var(--header-height);
+  margin-left: var(--sidebar-width);
+}
 h1 {
   color: var(--color-secondary);
 }
@@ -41,10 +52,6 @@ h1 {
   left: 0;
   top: var(--header-height);
   height: calc(100vh - var(--header-height));
-}
-.body-container {
-  margin-top: var(--header-height);
-  margin-left: var(--sidebar-width);
 }
 .side-bar-list li {
   color: var(--color-secondary);

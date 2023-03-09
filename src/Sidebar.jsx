@@ -1,40 +1,17 @@
 import { useState } from "react";
+import { SidebarData } from "./data";
 export default function Sidebar() {
-  const LINKS = [
-    {
-      label: "Home",
-      isSubMenu: false,
-    },
-    {
-      label: "My Startup",
-      isSubMenu: false,
-    },
-    {
-      label: "Subscriptions",
-      isSubMenu: true,
-      subList: ["MKBHD", "Kurzgesagt", "Linus Tech Tips", "Short Circuit"],
-    },
-    {
-      label: "History",
-      isSubMenu: false,
-    },
-    {
-      label: "Library",
-      isSubMenu: true,
-      subList: ["Liked", "Watch Later", "Uploads"],
-    },
-  ];
-  const [list, setList] = useState([]);
+  const [menuData, setMenuData] = useState([]);
   const [subMenuTopOffset, setSubMenuTopOffset] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const onMenuExpand = (e, item) => {
     setSubMenuTopOffset(e.clientY);
-    if (item.label == list.label) {
+    if (item.label == menuData.label) {
       setIsMenuOpen(false);
-      setList([]);
+      setMenuData([]);
     } else {
       setIsMenuOpen(true);
-      setList(item);
+      setMenuData(item);
     }
   };
 
@@ -42,7 +19,7 @@ export default function Sidebar() {
     <>
       <div className="sidebar-container">
         <ul className="side-bar-list">
-          {LINKS?.map((item) => (
+          {SidebarData?.map((item) => (
             <li
               key={item.label}
               onClick={(e) => (item.isSubMenu ? onMenuExpand(e, item) : null)}
@@ -53,15 +30,15 @@ export default function Sidebar() {
           ))}
         </ul>
       </div>
-      {isMenuOpen ? (
+      {isMenuOpen && (
         <div className="expand-menu" style={{ top: `${subMenuTopOffset}px` }}>
           <ul className="side-bar-list">
-            {list.subList.map((item) => (
-              <li key={item}>{item}</li>
+            {menuData?.link?.map((item) => (
+              <li key={item.label}>{item.label}</li>
             ))}
           </ul>
         </div>
-      ) : null}
+      )}
     </>
   );
 }

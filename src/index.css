@@ -17,12 +17,10 @@ body {
 }
 
 .body-container {
-  overflow: auto;
-  position: sticky;
-  top: var(--header-height);
-  height: calc(100vh - var(--header-height));
   margin-top: var(--header-height);
   margin-left: var(--sidebar-width);
+  overflow: auto;
+  height: calc(100vh - var(--header-height));
 }
 h1 {
   color: var(--color-secondary);

@@ -4,7 +4,6 @@ export default function Sidebar() {
   const [menuData, setMenuData] = useState([]);
 
   const onMenuExpand = (e, item) => {
-    console.log(e);
     const menu = document.querySelector("#expandable-menu-id");
     if (item.label == menuData.label) {
       menu.className = "collapse-menu";
@@ -12,7 +11,7 @@ export default function Sidebar() {
       setMenuData([]);
     } else {
       menu.className = "expand-menu";
-      menu.style.top = `${e.clientY}px`;
+      menu.style.top = `${e.target.getBoundingClientRect().top}px`;
       setMenuData(item);
     }
   };

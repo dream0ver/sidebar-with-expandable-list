@@ -2,15 +2,17 @@ import { useState } from "react";
 import { SidebarData } from "./data";
 export default function Sidebar() {
   const [menuData, setMenuData] = useState([]);
-  const [subMenuTopOffset, setSubMenuTopOffset] = useState(0);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const onMenuExpand = (e, item) => {
-    setSubMenuTopOffset(e.clientY);
+    console.log(e);
+    const menu = document.querySelector("#expandable-menu-id");
     if (item.label == menuData.label) {
-      setIsMenuOpen(false);
+      menu.className = "collapse-menu";
+      menu.style.top = "0";
       setMenuData([]);
     } else {
-      setIsMenuOpen(true);
+      menu.className = "expand-menu";
+      menu.style.top = `${e.clientY}px`;
       setMenuData(item);
     }
   };
@@ -30,15 +32,13 @@ export default function Sidebar() {
           ))}
         </ul>
       </div>
-      {isMenuOpen && (
-        <div className="expand-menu" style={{ top: `${subMenuTopOffset}px` }}>
-          <ul className="side-bar-list">
-            {menuData?.link?.map((item) => (
-              <li key={item.label}>{item.label}</li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <div id="expandable-menu-id">
+        <ul className="side-bar-list">
+          {menuData?.link?.map((item) => (
+            <li key={item.label}>{item.label}</li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }

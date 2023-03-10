@@ -69,11 +69,15 @@ code {
   font-size: 14px;
 }
 .expand-menu {
+  display: block;
   position: absolute;
   height: auto;
-  left: calc(var(--sidebar-width) + 20px);
+  left: calc(var(--sidebar-width) + 10px);
   width: var(--sidebar-width);
   background-color: var(--color-primary);
   border: 2px solid var(--color-primary);
   z-index: 999;
+}
+.collapse-menu {
+  display: none;
 }
